@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Quotation.css">
+    <link rel="stylesheet" href="quotation.js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/>6.0.0/css/fontawesome.min.css">
+    <title>Road Show Quotation - J.W.R.S.E.P</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">J.W.R.S.E.P</div>
+            <h1>Road Show Quotation System</h1>
+            <p>Complete road show solutions across Kenya</p>
+        </header>
+        
+        <section class="form-section">
+            <h2>Client Information</h2>
+            <form id="clientForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="clientName">Full Name</label>
+                        <input type="text" id="clientName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="company">Company/Organization</label>
+                        <input type="text" id="company">
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" required>
+                    </div>
+                </div>
+                
+                <h2>Event Details</h2>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="eventType">Event Type</label>
+                        <select id="eventType" required>
+                            <option value="">-- Select Event Type --</option>
+                            <option value="corporate">Corporate/Brand Promotion</option>
+                            <option value="political">Political Rally</option>
+                            <option value="music">Music Concert</option>
+                            <option value="religious">Religious Event</option>
+                            <option value="community">Community Awareness</option>
+                            <option value="product">Product Launch</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="province">Select Province</label>
+                        <select id="province" required>
+                            <option value="">-- Select Province --</option>
+                            <option value="nairobi">Nairobi Province</option>
+                            <option value="mombasa">Mombasa Province</option>
+                            <option value="kisumu">Kisumu Province</option>
+                            <option value="nakuru">Nakuru Province</option>
+                            <option value="eldoret">Eldoret Province</option>
+                            <option value="western">Western Province</option>
+                            <option value="central">Central Province</option>
+                            <option value="eastern">Eastern Province</option>
+                            <option value="northeastern">North Eastern Province</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="venue">Venue</label>
+                        <select id="venue" required>
+                            <option value="">-- Select Venue --</option>
+                            <!-- Venues will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="eventDate">Event Date</label>
+                        <input type="date" id="eventDate" required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="duration">Duration (Days)</label>
+                        <input type="number" id="duration" min="1" max="7" value="1" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="attendees">Expected Attendees</label>
+                        <select id="attendees">
+                            <option value="small">Small (1-500 people)</option>
+                            <option value="medium" selected>Medium (500-2,000 people)</option>
+                            <option value="large">Large (2,000-5,000 people)</option>
+                            <option value="xlarge">Extra Large (5,000+ people)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>Additional Services</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="photography" value="photography">
+                            <label for="photography">Photography/Videography (KES 50,000/day)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="mc" value="mc">
+                            <label for="mc">MC Services (KES 30,000/day)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="security" value="security">
+                            <label for="security">Security (KES 20,000/day)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="permits" value="permits">
+                            <label for="permits">Permits (KES 15,000)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="tents" value="tents">
+                            <label for="tents">Tents & Chairs (KES 80,000)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="catering" value="catering">
+                            <label for="catering">Catering Services (KES 150,000)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="transport" value="transport">
+                            <label for="transport">Transport Logistics (KES 120,000)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="branding" value="branding">
+                            <label for="branding">Custom Branding (KES 45,000)</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="specialRequests">Special Requests</label>
+                    <textarea id="specialRequests" rows="4"></textarea>
+                </div>
+                
+                <button type="button" id="generateQuoteBtn" class="btn-generate">Generate Quotation</button>
+            </form>
+        </section>
+        
+        <section class="quotation-section hidden" id="quotationSection">
+            <h2>Your Road Show Quotation</h2>
+            <div id="quotationDetails"></div>
+            <button type="button" id="confirmBookingBtn">Confirm Booking</button>
+            <button type="button" id="editQuoteBtn" class="no-print">Edit Quotation</button>
+        </section>
+        
+        <section class="confirmation-section hidden" id="confirmationSection">
+            <h2>Booking Confirmation</h2>
+            <p>Thank you for your booking! A confirmation has been sent to your email.</p>
+            
+            <div class="receipt-preview" id="receiptPreview">
+                <div class="company-info">
+                    <h2>EVENT PRO KENYA</h2>
+                    <p>P.O. Box 12345-00100, Nairobi</p>
+                    <p>Phone: +254 700 000000 | Email: info@eventprokenya.co.ke</p>
+                </div>
+                
+                <h3 class="receipt-title">ROAD SHOW BOOKING RECEIPT</h3>
+                
+                <div class="client-info">
+                    <p><strong>Client Name:</strong> <span id="receiptClientName"></span></p>
+                    <p><strong>Company:</strong> <span id="receiptCompany"></span></p>
+                    <p><strong>Email:</strong> <span id="receiptEmail"></span></p>
+                    <p><strong>Phone:</strong> <span id="receiptPhone"></span></p>
+                </div>
+                
+                <div id="receiptEventDetails"></div>
+                
+                <table id="receiptItems">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Amount (KES)</th>
+                        </tr>
+                    </thead>
+                    <tbody id="receiptItemsBody">
+                        <!-- Items will be populated by JavaScript -->
+                    </tbody>
+                    <tfoot>
+                        <tr class="total-row">
+                            <td colspan="2">TOTAL</td>
+                            <td id="receiptTotal">0.00</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Deposit Required (50%)</td>
+                            <td id="receiptDeposit">0.00</td>
+                        </tr>
+                    </tfoot>
+                </table>
+                
+                <div class="receipt-footer">
+                    <p>Thank you for choosing J.W.R.S.E.P!</p>
+                    <p>Payment due 1 month before event. Cancellation within 14 days forfeits deposit.</p>
+                </div>
+            </div>
+            
+            <button type="button" id="printReceiptBtn">Print Receipt</button>
+            <button type="button" id="downloadPdfBtn">Download PDF</button>
+            <button type="button" id="newBookingBtn" class="no-print">New Booking</button>
+        </section>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://sdk.twilio.com/js/client/latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        // Pricing data with event type multipliers
+        const eventTypeMultipliers = {
+            corporate: { name: "Corporate/Brand Promotion", multiplier: 1.2 },
+            political: { name: "Political Rally", multiplier: 1.5 },
+            music: { name: "Music Concert", multiplier: 1.8 },
+            religious: { name: "Religious Event", multiplier: 1.1 },
+            community: { name: "Community Awareness", multiplier: 1.0 },
+            product: { name: "Product Launch", multiplier: 1.3 }
+        };
+
+        const attendeeMultipliers = {
+            small: 0.8,
+            medium: 1.0,
+            large: 1.3,
+            xlarge: 1.6
+        };
+
+        const provinceData = {
+            nairobi: {
+                name: "Nairobi Province",
+                venues: [
+                    { name: "KICC", basePrice: 3000000 },
+                    { name: "Kenyatta International Convention Centre", basePrice: 2500000 },
+                    { name: "Carnivore Grounds", basePrice: 1800000 }
+                ],
+                basePrice: 1500000,
+                staff: 10,
+                daysIncluded: 3
+            },
+            mombasa: {
+                name: "Mombasa Province",
+                venues: [
+                    { name: "Wild Waters", basePrice: 2500000 },
+                    { name: "Serena Beach", basePrice: 2200000 },
+                    { name: "Pirates Beach", basePrice: 1200000 }
+                ],
+                basePrice: 1200000,
+                staff: 8,
+                daysIncluded: 3
+            },
+            kisumu: {
+                name: "Kisumu Province",
+                venues: [
+                    { name: "Kisumu Impala Grounds", basePrice: 1800000 },
+                    { name: "Jomo Kenyatta Sports Ground", basePrice: 1200000 }
+                ],
+                basePrice: 900000,
+                staff: 6,
+                daysIncluded: 3
+            },
+            nakuru: {
+                name: "Nakuru Province",
+                venues: [
+                    { name: "Afraha Stadium", basePrice: 1500000 },
+                    { name: "Nakuru Athletics Club", basePrice: 1000000 }
+                ],
+                basePrice: 750000,
+                staff: 5,
+                daysIncluded: 2
+            },
+            eldoret: {
+                name: "Eldoret Province",
+                venues: [
+                    { name: "Eldoret Sports Club", basePrice: 1400000 },
+                    { name: "64 Stadium", basePrice: 900000 }
+                ],
+                basePrice: 700000,
+                staff: 5,
+                daysIncluded: 2
+            },
+            western: {
+                name: "Western Province",
+                venues: [
+                    { name: "Bukhungu Stadium", basePrice: 1300000 },
+                    { name: "Kakamega Golf Club", basePrice: 800000 }
+                ],
+                basePrice: 650000,
+                staff: 4,
+                daysIncluded: 2
+            },
+            central: {
+                name: "Central Province",
+                venues: [
+                    { name: "Nyeri Sports Club", basePrice: 1200000 },
+                    { name: "Sagana Rapids Camp", basePrice: 750000 }
+                ],
+                basePrice: 600000,
+                staff: 4,
+                daysIncluded: 2
+            },
+            eastern: {
+                name: "Eastern Province",
+                venues: [
+                    { name: "Machakos People's Park", basePrice: 1100000 },
+                    { name: "Embu Stadium", basePrice: 700000 }
+                ],
+                basePrice: 550000,
+                staff: 4,
+                daysIncluded: 2
+            },
+            northeastern: {
+                name: "North Eastern Province",
+                venues: [
+                    { name: "Garissa Recreation Center", basePrice: 900000 },
+                    { name: "Wajir Stadium", basePrice: 500000 }
+                ],
+                basePrice: 450000,
+                staff: 3,
+                daysIncluded: 1
+            }
+        };
+
+        const additionalServices = {
+            photography: { name: "Photography/Videography", price: 50000, perDay: true },
+            mc: { name: "MC Services", price: 30000, perDay: true },
+            security: { name: "Security", price: 20000, perDay: true },
+            permits: { name: "Permits", price: 15000, perDay: false },
+            tents: { name: "Tents & Chairs", price: 80000, perDay: false },
+            catering: { name: "Catering Services", price: 150000, perDay: false },
+            transport: { name: "Transport Logistics", price: 120000, perDay: false },
+            branding: { name: "Custom Branding", price: 45000, perDay: false }
+        };
+
+        // DOM elements
+        const provinceSelect = document.getElementById('province');
+        const venueSelect = document.getElementById('venue');
+        const generateQuoteBtn = document.getElementById('generateQuoteBtn');
+        const quotationSection = document.getElementById('quotationSection');
+        const quotationDetails = document.getElementById('quotationDetails');
+        const confirmBookingBtn = document.getElementById('confirmBookingBtn');
+        const editQuoteBtn = document.getElementById('editQuoteBtn');
+        const confirmationSection = document.getElementById('confirmationSection');
+        const receiptPreview = document.getElementById('receiptPreview');
+        const printReceiptBtn = document.getElementById('printReceiptBtn');
+        const downloadPdfBtn = document.getElementById('downloadPdfBtn');
+        const newBookingBtn = document.getElementById('newBookingBtn');
+        const clientForm = document.getElementById('clientForm');
+
+        // Current booking data
+        let currentBooking = {};
+
+        // Event listeners
+        provinceSelect.addEventListener('change', updateVenues);
+        generateQuoteBtn.addEventListener('click', generateQuotation);
+        confirmBookingBtn.addEventListener('click', confirmBooking);
+        editQuoteBtn.addEventListener('click', editQuotation);
+        printReceiptBtn.addEventListener('click', printReceipt);
+        downloadPdfBtn.addEventListener('click', downloadPdf);
+        newBookingBtn.addEventListener('click', newBooking);
+
+        // Functions
+        function updateVenues() {
+            const province = provinceSelect.value;
+            venueSelect.innerHTML = '<option value="">-- Select Venue --</option>';
+            
+            if (province && provinceData[province]) {
+                provinceData[province].venues.forEach(venue => {
+                    const option = document.createElement('option');
+                    option.value = venue.name;
+                    option.textContent = `${venue.name} (Base: KES ${venue.basePrice.toLocaleString()})`;
+                    venueSelect.appendChild(option);
+                });
+            }
+        }
+
+        function generateQuotation() {
+            if (!clientForm.checkValidity()) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Get form values
+            const eventType = document.getElementById('eventType').value;
+            const province = provinceSelect.value;
+            const venue = venueSelect.value;
+            const duration = parseInt(document.getElementById('duration').value);
+            const eventDate = document.getElementById('eventDate').value;
+            const attendees = document.getElementById('attendees').value;
+            const specialRequests = document.getElementById('specialRequests').value;
+            
+            // Get selected additional services
+            const selectedServices = [];
+            document.querySelectorAll('.checkbox-group input[type="checkbox"]:checked').forEach(checkbox => {
+                selectedServices.push(checkbox.value);
+            });
+
+            // Get province data
+            const provinceInfo = provinceData[province];
+            const selectedVenue = provinceInfo.venues.find(v => v.name === venue);
+            const eventTypeInfo = eventTypeMultipliers[eventType];
+            const attendeeMultiplier = attendeeMultipliers[attendees];
+
+            // Calculate costs
+            let baseCost = selectedVenue.basePrice * eventTypeInfo.multiplier * attendeeMultiplier;
+            let additionalCost = 0;
+            const servicesDetails = [];
+
+            selectedServices.forEach(serviceId => {
+                const service = additionalServices[serviceId];
+                let serviceCost = service.price;
+                
+                if (service.perDay) {
+                    serviceCost *= duration;
+                }
+                
+                additionalCost += serviceCost;
+                servicesDetails.push({
+                    name: service.name,
+                    cost: serviceCost,
+                    perDay: service.perDay
+                });
+            });
+
+            const totalCost = baseCost + additionalCost;
+            const deposit = totalCost * 0.5;
+
+            // Store current booking
+            currentBooking = {
+                clientName: document.getElementById('clientName').value,
+                company: document.getElementById('company').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                eventType: eventTypeInfo.name,
+                province: provinceInfo.name,
+                venue: venue,
+                eventDate: eventDate,
+                duration: duration,
+                attendees: attendees,
+                baseCost: baseCost,
+                additionalCost: additionalCost,
+                totalCost: totalCost,
+                deposit: deposit,
+                services: servicesDetails,
+                specialRequests: specialRequests,
+                eventTypeMultiplier: eventTypeInfo.multiplier,
+                attendeeMultiplier: attendeeMultiplier
+            };
+
+            // Display quotation
+            let quotationHTML = `
+                <h3>Quotation for ${currentBooking.clientName}</h3>
+                <p><strong>Company:</strong> ${currentBooking.company || 'N/A'}</p>
+                <p><strong>Event Type:</strong> ${currentBooking.eventType}</p>
+                <p><strong>Event Date:</strong> ${new Date(currentBooking.eventDate).toLocaleDateString()}</p>
+                <p><strong>Location:</strong> ${currentBooking.venue}, ${currentBooking.province}</p>
+                <p><strong>Duration:</strong> ${currentBooking.duration} day(s)</p>
+                <p><strong>Expected Attendees:</strong> ${attendees.charAt(0).toUpperCase() + attendees.slice(1)} scale</p>
+                <p><em>Note: Pricing includes event type multiplier (${currentBooking.eventTypeMultiplier}x) 
+                and attendee scale multiplier (${currentBooking.attendeeMultiplier}x)</em></p>
+                
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Description</th>
+                            <th>Amount (KES)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Venue Booking</td>
+                            <td>${currentBooking.venue} (${provinceInfo.staff} staff, ${provinceInfo.daysIncluded} days included)</td>
+                            <td>${currentBooking.baseCost.toLocaleString()}</td>
+                        </tr>
+            `;
+
+            currentBooking.services.forEach(service => {
+                quotationHTML += `
+                    <tr>
+                        <td>${service.name}</td>
+                        <td>${service.perDay ? `Daily service (${currentBooking.duration} days)` : 'One-time service'}</td>
+                        <td>${service.cost.toLocaleString()}</td>
+                    </tr>
+                `;
+            });
+
+            quotationHTML += `
+                        <tr class="total-row">
+                            <td colspan="2">TOTAL</td>
+                            <td>${currentBooking.totalCost.toLocaleString()}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">Deposit Required (50%)</td>
+                            <td>${currentBooking.deposit.toLocaleString()}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            `;
+
+            if (currentBooking.specialRequests) {
+                quotationHTML += `
+                    <h4>Special Requests</h4>
+                    <p>${currentBooking.specialRequests}</p>
+                `;
+            }
+
+            quotationDetails.innerHTML = quotationHTML;
+            quotationSection.classList.remove('hidden');
+            clientForm.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function confirmBooking() {
+            // Update receipt preview
+            document.getElementById('receiptClientName').textContent = currentBooking.clientName;
+            document.getElementById('receiptCompany').textContent = currentBooking.company || 'N/A';
+            document.getElementById('receiptEmail').textContent = currentBooking.email;
+            document.getElementById('receiptPhone').textContent = currentBooking.phone;
+            
+            document.getElementById('receiptEventDetails').innerHTML = `
+                <p><strong>Event Type:</strong> ${currentBooking.eventType}</p>
+                <p><strong>Event Date:</strong> ${new Date(currentBooking.eventDate).toLocaleDateString()}</p>
+                <p><strong>Location:</strong> ${currentBooking.venue}, ${currentBooking.province}</p>
+                <p><strong>Duration:</strong> ${currentBooking.duration} day(s)</p>
+                <p><strong>Attendee Scale:</strong> ${currentBooking.attendees.charAt(0).toUpperCase() + currentBooking.attendees.slice(1)}</p>
+            `;
+            
+            const receiptItemsBody = document.getElementById('receiptItemsBody');
+            receiptItemsBody.innerHTML = '';
+            
+            // Add venue item
+            let row = document.createElement('tr');
+            row.innerHTML = `
+                <td>Venue Booking</td>
+                <td>${currentBooking.venue} (${currentBooking.eventType} event)</td>
+                <td>${currentBooking.baseCost.toLocaleString()}</td>
+            `;
+            receiptItemsBody.appendChild(row);
+            
+            // Add services
+            currentBooking.services.forEach(service => {
+                row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${service.name}</td>
+                    <td>${service.perDay ? `Daily service (${currentBooking.duration} days)` : 'One-time service'}</td>
+                    <td>${service.cost.toLocaleString()}</td>
+                `;
+                receiptItemsBody.appendChild(row);
+            });
+            
+            // Update totals
+            document.getElementById('receiptTotal').textContent = currentBooking.totalCost.toLocaleString();
+            document.getElementById('receiptDeposit').textContent = currentBooking.deposit.toLocaleString();
+            
+            // Show confirmation
+            quotationSection.classList.add('hidden');
+            confirmationSection.classList.remove('hidden');
+            confirmationSection.scrollIntoView({ behavior: 'smooth' });
+            
+            // In a real app, you would send an email here
+            console.log('Email would be sent to:', currentBooking.email);
+            console.log('Email would be sent to company:  jordanweyama48@gmail.com');
+            
+            // Mock email content
+            const emailContent = `
+                Subject: Road Show Booking Confirmation - Event Pro Kenya
+        
+                Dear ${currentBooking.clientName},
+                
+                Thank you for booking your ${currentBooking.eventType.toLowerCase()} road show with Event Pro Kenya!
+                
+                Booking Details:
+                - Event Type: ${currentBooking.eventType}
+                - Event Date: ${new Date(currentBooking.eventDate).toLocaleDateString()}
+                - Location: ${currentBooking.venue}, ${currentBooking.province}
+                - Duration: ${currentBooking.duration} day(s)
+                - Attendee Scale: ${currentBooking.attendees.charAt(0).toUpperCase() + currentBooking.attendees.slice(1)}
+                - Total Cost: KES ${currentBooking.totalCost.toLocaleString()}
+                - Deposit Required: KES ${currentBooking.deposit.toLocaleString()}
+                
+                Please find attached your receipt for this booking.
+                
+                We'll be in touch soon to discuss the next steps in planning your event.
+                
+                Best regards,
+                J.W.R.S.E.P Team
+                 jordanweyama48@gmail.com
+                +254 718 697184
+            `;
+            
+            console.log('Email content:', emailContent);
+        }
+
+        function editQuotation() {
+            quotationSection.classList.add('hidden');
+        }
+
+        function printReceipt() {
+            window.print();
+        }
+
+        function downloadPdf() {
+            // Use jsPDF to generate PDF
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Add logo and company info
+            doc.setFontSize(20);
+            doc.setTextColor(40, 40, 40);
+            doc.text('J.W.R.S.E.P ', 105, 20, { align: 'center' });
+            
+            doc.setFontSize(12);
+            doc.text('P.O. Box 12345-00100, Nairobi', 105, 28, { align: 'center' });
+            doc.text('Phone: +254 718 697184 | Email:  jordanweyama48@gmail.com', 105, 34, { align: 'center' });
+            
+            // Add receipt title
+            doc.setFontSize(16);
+            doc.setTextColor(231, 76, 60);
+            doc.text('ROAD SHOW BOOKING RECEIPT', 105, 45, { align: 'center' });
+            
+            // Add client info
+            doc.setFontSize(12);
+            doc.setTextColor(40, 40, 40);
+            doc.text(`Client Name: ${currentBooking.clientName}`, 20, 60);
+            doc.text(`Company: ${currentBooking.company || 'N/A'}`, 20, 67);
+            doc.text(`Email: ${currentBooking.email}`, 20, 74);
+            doc.text(`Phone: ${currentBooking.phone}`, 20, 81);
+            
+            // Add event details
+            doc.text(`Event Type: ${currentBooking.eventType}`, 20, 91);
+            doc.text(`Event Date: ${new Date(currentBooking.eventDate).toLocaleDateString()}`, 20, 98);
+            doc.text(`Location: ${currentBooking.venue}, ${currentBooking.province}`, 20, 105);
+            doc.text(`Duration: ${currentBooking.duration} day(s)`, 20, 112);
+            doc.text(`Attendee Scale: ${currentBooking.attendees.charAt(0).toUpperCase() + currentBooking.attendees.slice(1)}`, 20, 119);
+            
+            // Add items table
+            const tableData = [
+                ['Venue Booking', currentBooking.venue, currentBooking.baseCost.toLocaleString()],
+                ...currentBooking.services.map(service => [
+                    service.name, 
+                    service.perDay ? `Daily (${currentBooking.duration} days)` : 'One-time', 
+                    service.cost.toLocaleString()
+                ]),
+                ['TOTAL', '', currentBooking.totalCost.toLocaleString()],
+                ['Deposit Required (50%)', '', currentBooking.deposit.toLocaleString()]
+            ];
+            
+            doc.autoTable({
+                startY: 125,
+                head: [['Item', 'Description', 'Amount (KES)']],
+                body: tableData,
+                theme: 'grid',
+                headStyles: {
+                    fillColor: [44, 62, 80],
+                    textColor: 255
+                },
+                columnStyles: {
+                    2: { halign: 'right' }
+                }
+            });
+            
+            // Add footer
+            doc.setFontSize(10);
+            doc.setTextColor(119, 119, 119);
+            doc.text('Thank you for choosing J.W.R.S.E.P!', 105, doc.lastAutoTable.finalY + 15, { align: 'center' });
+            doc.text('Payment due 7 days before event. Cancellation within 14 days forfeits deposit.', 105, doc.lastAutoTable.finalY + 21, { align: 'center' });
+            
+            // Save the PDF
+            doc.save(`J.W.R.S.E.P_Receipt_${currentBooking.clientName.replace(' ', '_')}.pdf`);
+        }
+
+        function newBooking() {
+            // Reset form
+            clientForm.reset();
+            
+            // Hide sections
+            confirmationSection.classList.add('hidden');
+            quotationSection.classList.add('hidden');
+            
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+                // Initialize EmailJS (replace with your actual User ID)
+        emailjs.init('jordanweyama48@gmail.com');
+    </script>
+</head>
+<body>
+    <!-- Previous HTML content remains the same until the script section -->
+
+    <script>
+        // Updated confirmBooking function with notifications
+        async function confirmBooking() {
+            // ... (previous receipt generation code remains the same)
+
+            // Generate PDF
+            const pdfUrl = await generatePdf();
+            
+            // Send notifications
+            await sendSMS();
+            await sendEmailWithPdf(pdfUrl);
+            
+            // Show confirmation
+            quotationSection.classList.add('hidden');
+            confirmationSection.classList.remove('hidden');
+        }
+
+        // Generate PDF and return as URL
+        async function generatePdf() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // ... (your existing PDF generation code)
+            
+            // Return as data URL
+            return doc.output('datauristring');
+        }
+
+        // Send SMS via Twilio
+        async function sendSMS() {
+            const accountSid = 'YOUR_TWILIO_ACCOUNT_SID';
+            const authToken = 'YOUR_TWILIO_AUTH_TOKEN';
+            const twilioPhone = 'YOUR_TWILIO_PHONE_NUMBER';
+            
+            try {
+                const response = await fetch('https://api.twilio.com/2010-04-01/Accounts/' + accountSid + '/Messages.json', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': 'Basic ' + btoa(accountSid + ':' + authToken),
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'To': '+254' + currentBooking.phone.slice(-9), // Format Kenyan number
+                        'From': twilioPhone,
+                        'Body': `Hi ${currentBooking.clientName}, your ${currentBooking.eventType} booking at ${currentBooking.venue} is confirmed! Total: KES ${currentBooking.totalCost.toLocaleString()}. Deposit: KES ${currentBooking.deposit.toLocaleString()}.`
+                    })
+                });
+                
+                const data = await response.json();
+                console.log('SMS sent:', data);
+            } catch (error) {
+                console.error('SMS error:', error);
+            }
+        }
+
+        // Send Email with PDF attachment
+        async function sendEmailWithPdf(pdfUrl) {
+            try {
+                // Convert data URL to blob
+                const pdfBlob = await fetch(pdfUrl).then(r => r.blob());
+                
+                // Prepare email parameters
+                const params = {
+                    client_name: currentBooking.clientName,
+                    client_email: currentBooking.email,
+                    event_type: currentBooking.eventType,
+                    event_date: new Date(currentBooking.eventDate).toLocaleDateString(),
+                    venue: currentBooking.venue,
+                    total_cost: currentBooking.totalCost.toLocaleString(),
+                    deposit: currentBooking.deposit.toLocaleString(),
+                    pdf_attachment: pdfBlob
+                };
+
+                // Send via EmailJS
+                await emailjs.send('service_kzk8ude', 'YOUR_EMAILJS_TEMPLATE_ID', params);
+                console.log('Email sent successfully');
+            } catch (error) {
+                console.error('Email error:', error);
+            }
+        }
+    </script>
+</body>
+</html>
